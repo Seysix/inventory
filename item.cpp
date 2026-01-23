@@ -58,12 +58,38 @@ void Item::use()
 void Item::showInfo()
 {
     // dodac showInfo dla i
+    std::cout << "Item - " << this->name << "\n";
+    std::cout << "Price - " << this->price << "\n";
+    std::cout << "Durability - " << this->durability << "/100 \n";
+    std::cout << "Level - " << this->level << "\n";
+    std::cout << "Rarity - " << Item::getRarityString() << "\n";
+}
+
+std::string Item::getRarityString()
+{
+    switch (this->rarity) {
+    case common:
+        return "common";
+        break;
+    case magic:
+        return "magic";
+        break;
+    case rare:
+        return "rare";
+        break;
+    case unseen:
+        return "unseen";
+        break;
+    default:
+        return "unknown";
+        break;
+    }
 }
 
 Item::Item() {
     name = "Stick";
     price = 1;
-    durability = 10;
+    durability = 100;
     level = 1;
     rarity = magic;
 

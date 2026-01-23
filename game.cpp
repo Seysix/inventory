@@ -24,7 +24,7 @@ Game::~Game()
 void Game::play()
 {
     int userInput = 0;
-    while (userInput != 127){
+    while (userInput != 27){
         player->getInv()->display();
         userInput = int(getSingleChar());
 
@@ -38,11 +38,22 @@ void Game::play()
         case 119:
             player->getInv()->setCurrentRow(player->getInv()->getCurrentRow() - 1);
             break;
-        case 115:
+        case 115:            
             player->getInv()->setCurrentRow(player->getInv()->getCurrentRow() + 1);
             break;
         case 105:
+            // show info
+            if (player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol()) != nullptr){
+                system(CLEAR);
+                // getItemOnSelectedRowsCons(rows, cols)->showInfo()
+                player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->showInfo();
+                std::cout << "Press ESC to go back...";
 
+                while (userInput != 27){
+                    userInput = int(getSingleChar());
+                }
+                userInput= 0;
+            }
             break;
         default:
             return;

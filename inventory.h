@@ -24,6 +24,7 @@ public:
     int getCols() const;
     void setCols(int newCols);
     Item ***getItems() const;
+    Item *getItemOnSelectedRC(int row, int col);
     void setItems(Item ***newItems);
     int getCurrentRow() const;
     void setCurrentRow(int newCurrentRow);

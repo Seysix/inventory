@@ -25,6 +25,11 @@ Item ***Inventory::getItems() const
     return items;
 }
 
+Item *Inventory::getItemOnSelectedRC(int row, int col)
+{
+    return items[row][col];
+}
+
 void Inventory::setItems(Item ***newItems)
 {
     items = newItems;

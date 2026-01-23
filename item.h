@@ -1,11 +1,13 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include <string>
+#include <iostream>
 #include <time.h>
 enum Rarity {
     common,
     magic,
-    rare
+    rare,
+    unseen
 };
 
 class Item
@@ -20,6 +22,11 @@ public:
     Item();
     Item(const std::string &name, int price);
 
+    //methods
+    void use();
+    void showInfo();
+    std::string getRarityString();
+
     //setters and getters
     std::string getName() const;
     void setName(const std::string &newName);
@@ -31,9 +38,6 @@ public:
     void setLevel(int newLevel);
     int getPrice() const;
     void setPrice(int newPrice);
-    //other methods
-    void use();
-    void showInfo();
 };
 
 #endif // ITEM_H
