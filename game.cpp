@@ -64,7 +64,7 @@ void Game::play()
 
                 if (player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->getDurability() <= 0){
                     player->getInv()->removeItem(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol());
-                    player->getInv()->addItem(new Item("Penis Sword", 10));
+                    //player->getInv()->addItem(new Item("Penis Sword", 10));
                 } else {
                     std::cout << "You used " << player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->getName() << "...";
                 }
