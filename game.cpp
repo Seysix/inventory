@@ -23,6 +23,7 @@ Game::~Game()
 
 void Game::play()
 {
+    system(CLEAR);
     int userInput = 0;
     while (userInput != 27){
         player->getInv()->display();
@@ -44,7 +45,7 @@ void Game::play()
         case 105:
             // show info
             if (player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol()) != nullptr){
-                system(CLEAR);
+                //system(CLEAR);
                 // getItemOnSelectedRowsCons(rows, cols)->showInfo()
                 player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->showInfo();
                 std::cout << "Press ESC to go back...";
@@ -55,8 +56,24 @@ void Game::play()
                 userInput= 0;
             }
             break;
+        case 117:
+
+            if (player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol()) != nullptr){
+                player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->use();
+
+
+                if (player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->getDurability() <= 0){
+                    player->getInv()->removeItem(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol());
+                }
+
+                std::cout << "You used " << player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->getName() << "...";
+
+                userInput = int(getSingleChar());
+                userInput = 0;
+            }
+            break;
         default:
-            return;
+            break;
         }
 
         system(CLEAR);
@@ -70,4 +87,12 @@ void Game::play()
     // s : 115
     // d : 100
     // i : 105
+}
+
+void Game::setPlayerName()
+{
+    std::string name{};
+    std::cout << "Print your name: ";
+    std::cin >> name;
+    player->setName(name);
 }

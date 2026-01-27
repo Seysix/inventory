@@ -106,10 +106,16 @@ void Inventory::display()
 {
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
+
+            // if (items[rows][cols]->getDurability() >= 0){
+            //     delete items[rows][cols];
+            //     items[rows][cols] = nullptr;
+            // }
+
             if (i == currentRow && j == currentCol){
-                std::cout << "{";
+                std::cout << ">[";
             } else{
-                std::cout << "[";
+                std::cout << " [";
             }
             if (items[i][j] == nullptr){
                 std::cout << " ";
@@ -118,9 +124,9 @@ void Inventory::display()
             }
 
             if (i == currentRow && j == currentCol){
-                std::cout << "}";
+                std::cout << "]<";
             } else{
-                std::cout << "]";
+                std::cout << "] ";
             }
         }
         std::cout << "\n";
@@ -138,5 +144,55 @@ bool Inventory::addItem(Item *item)
         }
     }
     return false;
+}
+
+bool Inventory::removeItem(int row, int col)
+{
+    if (items[row][col] != nullptr){
+        delete items[row][col];
+        items[row][col] = nullptr;
+        return true;
+    }
+    return false;
+}
+
+bool Inventory::moveTo(int oldRow, int oldCol, int newRow, int newCol)
+{
+    if (oldRow < 0 || oldRow >= rows || oldCol < 0 || oldCol >= cols ||
+        newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols) {
+        return false;
+    }
+
+    if (items[oldRow][oldCol] == nullptr) {
+        return false;
+    }
+
+    if (items[newRow][newCol] != nullptr) {
+        Item* temp = items[oldRow][oldCol];
+        items[oldRow][oldCol] = items[newRow][newCol];
+        items[newRow][newCol] = temp;
+    } else {
+        items[newRow][newCol] = items[oldRow][oldCol];
+        items[oldRow][oldCol] = nullptr;
+    }
+    return true;
+}
+
+void Inventory::sort()
+{
+    std::vector<Item*> allItems;
+
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < cols; j++){
+            if (items[i][j] != nullptr){
+                allItems.push_back(items[i][j]);
+                items[i][j] = nullptr;
+            }
+        }
+    }
+
+    for (Item* item : allItems) {
+        addItem(item);
+    }
 }
 

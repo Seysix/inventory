@@ -15,6 +15,11 @@ Inventory *Player::getInv() const
     return inv;
 }
 
+std::string Player::getName() const
+{
+    return name;
+}
+
 Player::Player() {
     this->name = "John";
     this->inv = new Inventory();

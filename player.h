@@ -14,6 +14,7 @@ public:
     void setName(const std::string &newName);
     void setInv(Inventory *newInv);
     Inventory *getInv() const;
+    std::string getName() const;
 };
 
 #endif // PLAYER_H

@@ -52,7 +52,7 @@ void Item::setPrice(int newPrice)
 
 void Item::use()
 {
-
+    this->setDurability(this->getDurability() - 10);
 }
 
 void Item::showInfo()

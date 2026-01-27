@@ -10,6 +10,7 @@ public:
     Game();
     ~Game();
     void play();
+    void setPlayerName();
     void setPlayer(Player *newPlayer);
     Player *getPlayer() const;
 };

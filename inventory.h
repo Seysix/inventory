@@ -2,6 +2,7 @@
 #define INVENTORY_H
 #include "item.h"
 #include <iostream>
+#include <vector>
 class Inventory
 {
 private:
@@ -13,10 +14,13 @@ private:
 public:
     Inventory();
     ~Inventory();
+    void clear();
     void display();
     bool addItem(Item* item);
+    bool removeItem(int row, int col);
+    bool moveTo(int oldRow, int oldCol, int newRow, int newCol);
+    void sort();
 
-    void clear();
 
     // getters & setters
     int getRows() const;
