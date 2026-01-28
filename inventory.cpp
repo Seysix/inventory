@@ -146,6 +146,36 @@ bool Inventory::addItem(Item *item)
     return false;
 }
 
+bool Inventory::randomItem()
+{
+
+    std::string names[10] = {
+        "Sword", "Chestplate", "Axe", "Helmet", "Katana", "Wand", "Bow", "Hammer", "Two-Handed Axe", "Two-Handed Sword"
+    };
+
+    srand(time(NULL));
+    //int randName = rand() % 10;
+    // int randNum = rand() % 91 + 10;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist1to10(0, 9); // zakres [0, 9]
+    std::uniform_int_distribution<int> dist1to100(10, 100); // zakres [10, 100]
+
+
+    int randName = dist1to10(gen);
+    int randNum = dist1to100(gen);
+
+
+    Item* item = new Item(names[randName], randNum);
+
+    if (!addItem(item)) {
+        delete item;
+        return false;
+    }
+    return true;
+}
+
 bool Inventory::removeItem(int row, int col)
 {
     if (items[row][col] != nullptr){

@@ -101,8 +101,12 @@ Item::Item(const std::string &name, int price)
     level(1),
     price(price)
 {
-    srand(time(NULL));
-    int randNum = rand() % 101;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(0, 100); // zakres [0, 100]
+
+    int randNum = dist(gen);
+
     if(randNum < 60) {
         rarity = common;
     }

@@ -2,7 +2,8 @@
 #define ITEM_H
 #include <string>
 #include <iostream>
-#include <time.h>
+#include <random>
+
 enum Rarity {
     common,
     magic,
@@ -25,6 +26,7 @@ public:
     //methods
     void use();
     void showInfo();
+
     std::string getRarityString();
 
     //setters and getters

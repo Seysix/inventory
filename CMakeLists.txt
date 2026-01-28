@@ -11,6 +11,7 @@ add_executable(inventory main.cpp
     player.h player.cpp
     game.h game.cpp
     charCheck.h
+
 )
 
 include(GNUInstallDirs)

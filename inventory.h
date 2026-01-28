@@ -3,6 +3,7 @@
 #include "item.h"
 #include <iostream>
 #include <vector>
+#include <random>
 class Inventory
 {
 private:
@@ -17,6 +18,7 @@ public:
     void clear();
     void display();
     bool addItem(Item* item);
+    bool randomItem();
     bool removeItem(int row, int col);
     bool moveTo(int oldRow, int oldCol, int newRow, int newCol);
     void sort();

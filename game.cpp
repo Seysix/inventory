@@ -57,10 +57,8 @@ void Game::play()
             }
             break;
         case 117:
-
             if (player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol()) != nullptr){
                 player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->use();
-
 
                 if (player->getInv()->getItemOnSelectedRC(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol())->getDurability() <= 0){
                     player->getInv()->removeItem(player->getInv()->getCurrentRow(), player->getInv()->getCurrentCol());
@@ -72,6 +70,9 @@ void Game::play()
                 userInput = int(getSingleChar());
                 userInput = 0;
             }
+            break;
+        case 114:
+            player->getInv()->randomItem();
             break;
         default:
             break;
@@ -88,6 +89,7 @@ void Game::play()
     // s : 115
     // d : 100
     // i : 105
+    // r : 114
 }
 
 void Game::setPlayerName()
