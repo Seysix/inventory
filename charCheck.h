@@ -14,6 +14,11 @@
 #define OS_NAME "macOS"
 #define CLEAR "clear"
 #endif
+#elif __linux__
+#include <termios.h>
+#include <unistd.h>
+#define OS_NAME "linux"
+#define CLEAR "clear"
 #else
 #define OS_NAME "Unknown OS"
 #define CLEAR "clear"
@@ -22,7 +27,7 @@
 char getSingleChar() {
 #ifdef _WIN32
     return _getch(); // Windows: Get character without Enter
-#elif __APPLE__
+#elif __APPLE__ || __linux__
     struct termios oldt, newt;
     char ch;
     tcgetattr(STDIN_FILENO, &oldt); // Get current terminal attributes
